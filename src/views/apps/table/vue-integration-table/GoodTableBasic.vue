@@ -1,11 +1,11 @@
 <template>
   <b-card-code title="Integrations">
-  <b-button
-            variant="primary"
-            :to="{ name: 'create-integration'}"
-          >
-            Crear Integración
-  </b-button>
+    <b-button
+      variant="primary"
+      :to="{ name: 'create-integration'}"
+    >
+      Crear Integración
+    </b-button>
     <!-- search input -->
     <div class="custom-search d-flex justify-content-end">
       <b-form-group>

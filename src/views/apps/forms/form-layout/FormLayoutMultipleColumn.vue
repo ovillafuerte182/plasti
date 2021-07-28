@@ -2,7 +2,10 @@
   <b-card-code
     title="Programar Notificaciones"
   >
-    <b-form inline @submit.prevent>
+    <b-form
+      inline
+      @submit.prevent
+    >
       <b-row>
         <b-col md="4">
           <form-select-basic />
@@ -19,80 +22,213 @@
           title="Paradas Maquinas"
         >
           <b-col cols="12">
-              <b-form-checkbox inline v-model="selected" value="Notifica_1" >Activar</b-form-checkbox> - Notificar cuando sean >=  <b-form-input id="paradas1" placeholder="Cantidad de paradas" /> En <b-form-input id="minutos1" placeholder="minutos" />
+            <b-form-checkbox
+              v-model="selected"
+              inline
+              value="Notifica_1"
+            >
+              Activar
+            </b-form-checkbox> - Notificar cuando sean >=  <b-form-input
+              id="paradas1"
+              placeholder="Cantidad de paradas"
+            /> En <b-form-input
+              id="minutos1"
+              placeholder="minutos"
+            />
           </b-col>
         </b-card-code>
         <b-card-code
           title="Paradas Consecutivas"
         >
           <b-col cols="12">
-              <b-form-checkbox inline v-model="selected" value="Notifica_1" >Activar</b-form-checkbox> - Notificar cuando se realicen paradas de un mismo evento menor <b-form-input id="paradas2" placeholder="Cantidad de paradas" />
+            <b-form-checkbox
+              v-model="selected"
+              inline
+              value="Notifica_1"
+            >
+              Activar
+            </b-form-checkbox> - Notificar cuando se realicen paradas de un mismo evento menor <b-form-input
+              id="paradas2"
+              placeholder="Cantidad de paradas"
+            />
           </b-col>
         </b-card-code>
         <b-card-code
           title="Trabajo Fallido"
         >
           <b-col cols="12">
-              <b-form-checkbox inline v-model="selected" value="Notifica_1" >Activar</b-form-checkbox> - Notificar trabajos fallidos por <b-form-select v-model="selected" :options="optionsCausa" class="mb-2"></b-form-select>
+            <b-form-checkbox
+              v-model="selected"
+              inline
+              value="Notifica_1"
+            >
+              Activar
+            </b-form-checkbox> - Notificar trabajos fallidos por <b-form-select
+              v-model="selected"
+              :options="optionsCausa"
+              class="mb-2"
+            />
           </b-col>
         </b-card-code>
         <b-card-code
           title="Orden Mantenimiento"
         >
           <b-col cols="12">
-              <b-form-checkbox inline v-model="selected" value="Notifica_1" >Activar</b-form-checkbox> - Notificar Mantenimiento <b-form-checkbox inline v-model="selected" value="Notifica_p" >Preventivo</b-form-checkbox> <b-form-checkbox inline v-model="selected" value="Notifica_p" >Correctivo</b-form-checkbox> <b-form-checkbox inline v-model="selected" value="Notifica_p" >Autonomo</b-form-checkbox> <b-form-checkbox inline v-model="selected" value="Notifica_p" >Adm Producción</b-form-checkbox>
+            <b-form-checkbox
+              v-model="selected"
+              inline
+              value="Notifica_1"
+            >
+              Activar
+            </b-form-checkbox> - Notificar Mantenimiento <b-form-checkbox
+              v-model="selected"
+              inline
+              value="Notifica_p"
+            >
+              Preventivo
+            </b-form-checkbox> <b-form-checkbox
+              v-model="selected"
+              inline
+              value="Notifica_p"
+            >
+              Correctivo
+            </b-form-checkbox> <b-form-checkbox
+              v-model="selected"
+              inline
+              value="Notifica_p"
+            >
+              Autonomo
+            </b-form-checkbox> <b-form-checkbox
+              v-model="selected"
+              inline
+              value="Notifica_p"
+            >
+              Adm Producción
+            </b-form-checkbox>
           </b-col>
         </b-card-code>
         <b-card-code
           title="Velocidad"
         >
           <b-col cols="12">
-              <b-form-checkbox inline v-model="selected" value="Notifica_1" >Activar</b-form-checkbox> - Notificar cuando la velocidad sea menor igual a <b-form-input id="paradas1" placeholder="Velocidad inf" /> o superior a <b-form-input id="paradas1" placeholder="Velocidad sup" />
+            <b-form-checkbox
+              v-model="selected"
+              inline
+              value="Notifica_1"
+            >
+              Activar
+            </b-form-checkbox> - Notificar cuando la velocidad sea menor igual a <b-form-input
+              id="paradas1"
+              placeholder="Velocidad inf"
+            /> o superior a <b-form-input
+              id="paradas1"
+              placeholder="Velocidad sup"
+            />
           </b-col>
         </b-card-code>
         <b-card-code
           title="Kpi Oee"
         >
           <b-col cols="12">
-              <b-form-checkbox inline v-model="selected" value="Notifica_1" >Activar</b-form-checkbox> - Notificar cuando Kpi Oee sea menor igual a <b-form-input id="paradas1" placeholder="Kpi Oee inf" /> o superior a <b-form-input id="paradas1" placeholder="Kpi Oee sup" />
+            <b-form-checkbox
+              v-model="selected"
+              inline
+              value="Notifica_1"
+            >
+              Activar
+            </b-form-checkbox> - Notificar cuando Kpi Oee sea menor igual a <b-form-input
+              id="paradas1"
+              placeholder="Kpi Oee inf"
+            /> o superior a <b-form-input
+              id="paradas1"
+              placeholder="Kpi Oee sup"
+            />
           </b-col>
         </b-card-code>
         <b-card-code
           title="Kpi disponibilidad"
         >
           <b-col cols="12">
-              <b-form-checkbox inline v-model="selected" value="Notifica_1" >Activar</b-form-checkbox> - Notificar cuando Kpi disponibilidad sea menor igual a <b-form-input id="paradas1" placeholder="Kpi inf" /> o >= <b-form-input id="paradas1" placeholder="Kpi sup" />
+            <b-form-checkbox
+              v-model="selected"
+              inline
+              value="Notifica_1"
+            >
+              Activar
+            </b-form-checkbox> - Notificar cuando Kpi disponibilidad sea menor igual a <b-form-input
+              id="paradas1"
+              placeholder="Kpi inf"
+            /> o >= <b-form-input
+              id="paradas1"
+              placeholder="Kpi sup"
+            />
           </b-col>
         </b-card-code>
         <b-card-code
           title="Kpi Rendimiento"
         >
           <b-col cols="12">
-              <b-form-checkbox inline v-model="selected" value="Notifica_1" >Activar</b-form-checkbox> - Notificar cuando Kpi Rendimiento sea menor igual a <b-form-input id="paradas1" placeholder="Kpi inf" /> o >= <b-form-input id="paradas1" placeholder="Kpi sup" />
+            <b-form-checkbox
+              v-model="selected"
+              inline
+              value="Notifica_1"
+            >
+              Activar
+            </b-form-checkbox> - Notificar cuando Kpi Rendimiento sea menor igual a <b-form-input
+              id="paradas1"
+              placeholder="Kpi inf"
+            /> o >= <b-form-input
+              id="paradas1"
+              placeholder="Kpi sup"
+            />
           </b-col>
         </b-card-code>
         <b-card-code
           title="Kpi Calidad"
         >
           <b-col cols="12">
-              <b-form-checkbox inline v-model="selected" value="Notifica_1" >Activar</b-form-checkbox> - Notificar cuando Kpi Calidad sea menor igual a <b-form-input id="paradas1" placeholder="Kpi inf" /> o >= <b-form-input id="paradas1" placeholder="Kpi sup" />
+            <b-form-checkbox
+              v-model="selected"
+              inline
+              value="Notifica_1"
+            >
+              Activar
+            </b-form-checkbox> - Notificar cuando Kpi Calidad sea menor igual a <b-form-input
+              id="paradas1"
+              placeholder="Kpi inf"
+            /> o >= <b-form-input
+              id="paradas1"
+              placeholder="Kpi sup"
+            />
           </b-col>
         </b-card-code>
         <b-card-code
           title="Kpi Desperdicio"
         >
           <b-col cols="12">
-              <b-form-checkbox inline v-model="selected" value="Notifica_1" >Activar</b-form-checkbox> - Notificar cuando Kpi Desp sea menor igual a <b-form-input id="paradas1" placeholder="Kpi inf" /> o >= <b-form-input id="paradas1" placeholder="Kpi sup" />
+            <b-form-checkbox
+              v-model="selected"
+              inline
+              value="Notifica_1"
+            >
+              Activar
+            </b-form-checkbox> - Notificar cuando Kpi Desp sea menor igual a <b-form-input
+              id="paradas1"
+              placeholder="Kpi inf"
+            /> o >= <b-form-input
+              id="paradas1"
+              placeholder="Kpi sup"
+            />
           </b-col>
         </b-card-code>
         <b-card-code title="Configurar Notificaciones de Usuario">
           <b-col cols="12">
-              <vue-select-multiple-user />
+            <vue-select-multiple-user />
           </b-col>
         </b-card-code>
         <b-card-code title="Configurar Notificaciones de Grupo">
           <b-col cols="12">
-              <vue-select-multiple-group />
+            <vue-select-multiple-group />
           </b-col>
         </b-card-code>
 

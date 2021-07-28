@@ -15,7 +15,7 @@
             :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
             multiple
             label="title"
-            :options="option"
+            :options="userOptions"
           />
 
           <template #code>
@@ -33,6 +33,7 @@ import {
 } from 'bootstrap-vue'
 import BCardCode from '@core/components/b-card-code'
 import vSelect from 'vue-select'
+import axios from 'axios'
 import {
   codeVueMultiBasic, codeVueMultiIcon, codeMultiPush, codeVueSelectionLimit, codeVueDir,
 } from './code'
@@ -54,58 +55,18 @@ export default {
       codeVueSelectionLimit,
       codeVueDir,
       dir: 'ltr',
-      selected: [
-        { title: 'Juan' },
-        { title: 'Pepe' },
-      ],
-      selected1: [
-        {
-          title: 'Command',
-          icon: 'CommandIcon',
-        },
-      ],
-      selected2: [],
-      selected3: [{
-        title: 'Database',
-        icon: 'DatabaseIcon',
-      }],
-      options: [],
-      optionsGrupo: [],
-      option: [
-        { title: 'Juan' },
-        { title: 'Pedro' },
-        { title: 'Pepe' },
-        { title: 'Luis' },
-        { title: 'Julio' },
-        { title: 'Raul' },
-        { title: 'Alberto' },
-      ],
-      optiongrupo: [
-        { title: 'Grupo1' },
-        { title: 'Grupo2' },
-        { title: 'Grupo3' },
-        { title: 'Grupo4' },
-        { title: 'Grupo5' },
-      ],
-      books: [
-        {
-          title: 'Database',
-          icon: 'DatabaseIcon',
-        },
-        {
-          title: 'Codepen',
-          icon: 'CodepenIcon',
-        },
-        {
-          title: 'Aperture ',
-          icon: 'ApertureIcon',
-        },
-        {
-          title: 'Command',
-          icon: 'CommandIcon',
-        },
-      ],
+      selected: [],
+      userOptions: [],
     }
+  },
+  mounted() {
+    this.getUsers()
+  },
+  methods: {
+    async getUsers() {
+      const { data } = await axios.get('http://3.143.116.184:8080/cloudmessage/user/list/1')
+      this.userOptions = data.map(user => ({ title: this.$options.filters.capitalize(`${user.name} ${user.last_name}`) }))
+    },
   },
 }
 </script>

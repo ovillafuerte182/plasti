@@ -23,6 +23,7 @@
 <script>
 import BCardCode from '@core/components/b-card-code'
 import { BFormSelect, BCardText } from 'bootstrap-vue'
+import axios from 'axios'
 import { codeBasic } from './code'
 
 export default {
@@ -34,14 +35,19 @@ export default {
   data() {
     return {
       selected: null,
-      options: [
-        { value: null, text: 'Seleccione una opción' },
-        { value: 'Miraflex', text: 'Miraflex' },
-        { value: 'Palmiraflex', text: 'Palmiraflex' },
-        { value: 'Bugaflex', text: 'Bugaflex' },
-      ],
+      options: [],
       codeBasic,
     }
+  },
+  mounted() {
+    this.getMachines()
+  },
+  methods: {
+    async getMachines() {
+      const { data } = await axios.get('http://3.143.116.184:8082/sgpmes/machine/1')
+      this.options = data.map(machine => ({ value: machine.machine_id, text: machine.name }))
+      this.options.unshift({ value: null, text: 'Please select some machine' })
+    },
   },
 }
 </script>

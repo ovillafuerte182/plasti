@@ -28,6 +28,12 @@ require('@/assets/scss/style.scss')
 
 Vue.config.productionTip = false
 
+Vue.filter('capitalize', phrase => phrase
+  .toLowerCase()
+  .split(' ')
+  .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+  .join(' '))
+
 new Vue({
   router,
   store,

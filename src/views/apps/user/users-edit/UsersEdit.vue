@@ -1,30 +1,30 @@
 <template>
-    <!-- Alert: No item found -->
-    <b-tabs
-      pills
-    >
-      <!-- Tab: Account -->
-      <!-- Tab: Information -->
-      <b-tab>
-        <template #title>
-          <feather-icon
-            icon="UserIcon"
-            size="16"
-            class="mr-0 mr-sm-50"
-          />
-          <span class="d-none d-sm-inline">Information</span>
-        </template>
-        <user-edit-tab-information class="mt-2 pt-75" />
-      </b-tab>
+  <!-- Alert: No item found -->
+  <b-tabs
+    pills
+  >
+    <!-- Tab: Account -->
+    <!-- Tab: Information -->
+    <b-tab>
+      <template #title>
+        <feather-icon
+          icon="UserIcon"
+          size="16"
+          class="mr-0 mr-sm-50"
+        />
+        <span class="d-none d-sm-inline">Information</span>
+      </template>
+      <user-edit-tab-information class="mt-2 pt-75" />
+    </b-tab>
 
-      <!-- Tab: Social -->
-      <b-tab>
-        <template #title>
-          <span class="d-none d-sm-inline">Seguridad</span>
-        </template>
-        <user-edit-tab-social class="mt-2 pt-75" />
-      </b-tab>
-    </b-tabs>
+    <!-- Tab: Social -->
+    <b-tab>
+      <template #title>
+        <span class="d-none d-sm-inline">Seguridad</span>
+      </template>
+      <user-edit-tab-social class="mt-2 pt-75" />
+    </b-tab>
+  </b-tabs>
 </template>
 
 <script>

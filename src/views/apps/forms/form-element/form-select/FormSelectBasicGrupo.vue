@@ -23,6 +23,7 @@
 <script>
 import BCardCode from '@core/components/b-card-code'
 import { BFormSelect, BCardText } from 'bootstrap-vue'
+import axios from 'axios'
 import { codeBasic } from './code'
 
 export default {
@@ -35,14 +36,19 @@ export default {
     return {
       selected: null,
       options: [
-        { value: null, text: 'Seleccione una opción' },
-        { value: 'Grupo Impresoras MREF', text: 'Grupo Impresoras MREF' },
-        { value: 'Grupo Administrativo', text: 'Grupo Administrativo' },
-        { value: { C: 'Grupo Ingenierias' }, text: 'Grupo Ingenierias' },
-        { value: 'Grupo Apoyo', text: 'Grupo Apoyo', disabled: true },
       ],
       codeBasic,
     }
+  },
+  mounted() {
+    this.getGroups()
+  },
+  methods: {
+    async getGroups() {
+      const { data } = await axios.get('http://3.143.116.184:8080/cloudmessage/group/list')
+      this.options = data.map(group => ({ value: group.group_id, text: this.$options.filters.capitalize(group.name) }))
+      this.options.unshift({ value: null, text: 'Please select a group' })
+    },
   },
 }
 </script>

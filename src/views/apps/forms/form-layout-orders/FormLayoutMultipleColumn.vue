@@ -1,93 +1,186 @@
 <template>
+
   <b-card-code
     title="Crear Orden"
   >
-    <b-form inline @submit.prevent>
+    <b-form
+      inline
+      @submit.prevent
+    >
       <b-row>
-        <b-col md="6"
-      xl="4"
-      class="mb-1">
-           <b-form-input id="codigo" placeholder="Código" />
+        <b-col
+          md="6"
+          xl="4"
+          class="mb-1"
+        >
+          <b-form-input
+            id="codigo"
+            v-model.trim="orderForm.code"
+            placeholder="Código"
+          />
         </b-col>
         <!-- date -->
-        <b-col md="6"
-      xl="4"
-      class="mb-1">
-          <b-form-input id="fecha" placeholder="Fecha" />
+        <b-col
+          md="6"
+          xl="4"
+          class="mb-1"
+        >
+          <b-form-input
+            id="fecha"
+            v-model.trim="orderForm.date"
+            placeholder="Fecha"
+          />
         </b-col>
-        <b-col md="6"
-      xl="4"
-      class="mb-1">
-          <b-form-group label="Estado" label-for="estado">
-          <b-form-select v-model="selected" :options="options" />
+        <b-col
+          md="6"
+          xl="4"
+          class="mb-1"
+        >
+          <b-form-group
+            label="Estado"
+            label-for="estado"
+          >
+            <b-form-select
+              v-model="orderForm.status"
+              :options="options"
+            />
           </b-form-group>
         </b-col>
       </b-row>
+      <b-row />
       <b-row>
-      </b-row>
-      <b-row>
-        <b-col md="6"
-      xl="4"
-      class="mb-1">
-           <b-form-input id="cliente" placeholder="Cliente" />
+        <b-col
+          md="6"
+          xl="4"
+          class="mb-1"
+        >
+          <b-form-input
+            id="cliente"
+            v-model="orderForm.client"
+            placeholder="Cliente"
+          />
         </b-col>
         <!-- date -->
-        <b-col md="6"
-      xl="4"
-      class="mb-1">
-          <b-form-input id="product" placeholder="Producto" />
+        <b-col
+          md="6"
+          xl="4"
+          class="mb-1"
+        >
+          <b-form-input
+            id="product"
+            v-model="orderForm.product"
+            placeholder="Producto"
+          />
         </b-col>
-        <b-col md="6"
-      xl="4"
-      class="mb-1">
-          <b-form-group label="Maquina" label-for="maquina">
-          <b-form-select v-model="selected" :options="optionsMaquina" />
+        <b-col
+          md="6"
+          xl="4"
+          class="mb-1"
+        >
+          <b-form-group
+            label="Maquina"
+            label-for="maquina"
+          >
+            <b-form-select
+              v-model="orderForm.machine"
+              :options="optionsMaquina"
+            />
           </b-form-group>
         </b-col>
       </b-row>
       <b-row>
-        <b-col md="6"
-      xl="4"
-      class="mb-1">
-          <b-form-group label="Cantidad" label-for="Cantidad">
-           <b-form-input id="Cantidad" placeholder="Cantidad" />
+        <b-col
+          md="6"
+          xl="4"
+          class="mb-1"
+        >
+          <b-form-group
+            label="Cantidad"
+            label-for="Cantidad"
+          >
+            <b-form-input
+              id="Cantidad"
+              v-model.number="orderForm.amount"
+              placeholder="Cantidad"
+            />
           </b-form-group>
         </b-col>
-        <b-col md="6"
-      xl="4"
-      class="mb-1">
-          <b-form-group label="Unidad de Medida" label-for="unidad">
-          <b-form-select v-model="selected" :options="optionsUnidad" />
+        <b-col
+          md="6"
+          xl="4"
+          class="mb-1"
+        >
+          <b-form-group
+            label="Unidad de Medida"
+            label-for="unidad"
+          >
+            <b-form-select
+              v-model="orderForm.unitMeasure"
+              :options="optionsUnidad"
+            />
           </b-form-group>
         </b-col>
       </b-row>
       <b-row>
-        <b-col md="6"
-      xl="4"
-      class="mb-1">
-          <b-form-group label="Motivo" label-for="motivo">
-          <b-form-select v-model="selected" :options="optionsMotivo" />
+        <b-col
+          md="6"
+          xl="4"
+          class="mb-1"
+        >
+          <b-form-group
+            label="Motivo"
+            label-for="motivo"
+          >
+            <b-form-select
+              v-model.number="orderForm.reason"
+              :options="optionsMotivo"
+            />
           </b-form-group>
         </b-col>
-        <b-col md="6"
-      xl="4"
-      class="mb-1">
-          <b-form-group label="Ejecutado" label-for="ejecutado">
-          <b-form-select v-model="selected" :options="optionsEjecutado" />
+        <b-col
+          md="6"
+          xl="4"
+          class="mb-1"
+        >
+          <b-form-group
+            label="Ejecutado"
+            label-for="ejecutado"
+          >
+            <b-form-select
+              v-model="orderForm.executed"
+              :options="optionsEjecutado"
+            />
           </b-form-group>
         </b-col>
-        <b-col md="6"
-      xl="4"
-      class="mb-1">
-          <b-form-group label="Pre-alistamiento" label-for="prealistamiento">
-          <b-form-select v-model="selected" :options="optionsPrealistamiento" />
+        <b-col
+          md="6"
+          xl="4"
+          class="mb-1"
+        >
+          <b-form-group
+            label="Pre-alistamiento"
+            label-for="prealistamiento"
+          >
+            <b-form-select
+              v-model="orderForm.preEnlistment"
+              :options="optionsPrealistamiento"
+            />
           </b-form-group>
         </b-col>
-        <b-col md="6"
-      xl="4"
-      class="mb-1">
-          <b-form-group label="Puesto" label-for="puesto">
-           <b-form-input id="Puesto" placeholder="Puesto" />
+        <b-col
+          md="6"
+          xl="4"
+          class="mb-1"
+        >
+          <b-form-group
+            label="Puesto"
+            label-for="puesto"
+          >
+            <b-form-input
+              id="Puesto"
+              v-model="orderForm.job"
+              placeholder="Puesto"
+            />
           </b-form-group>
         </b-col>
         <!-- submit and reset -->
@@ -123,6 +216,7 @@ import {
   BRow, BCol, BFormGroup, BFormInput, BButton, BForm, BFormSelect,
 } from 'bootstrap-vue'
 import Ripple from 'vue-ripple-directive'
+import axios from 'axios'
 import { codeMultipleColumn } from './code'
 
 export default {
@@ -152,24 +246,14 @@ export default {
         { value: 'Medium', text: 'Medium' },
         { value: 'High', text: 'High' },
       ],
-      optionsMaquina: [
-        { value: null, text: 'Please select some machine' },
-        { value: 'Machine1', text: 'Machine 1' },
-        { value: 'Machine2', text: 'Machine 2' },
-        { value: 'Machine3', text: 'Machine 3' },
-      ],
+      optionsMaquina: [],
       optionsUnidad: [
         { value: null, text: 'Please select some unit of measure' },
         { value: 'Measure1', text: 'Measure 1' },
         { value: 'Measure2', text: 'Measure 2' },
         { value: 'Measure3', text: 'Measure 3' },
       ],
-      optionsMotivo: [
-        { value: null, text: 'Please select some unit of measure' },
-        { value: 'Motivo1', text: 'Motivo 1' },
-        { value: 'Motivo2', text: 'Motivo 2' },
-        { value: 'Motivo3', text: 'Motivo 3' },
-      ],
+      optionsMotivo: [],
       optionsEjecutado: [
         { value: null, text: 'Please select some unit of measure' },
         { value: 'Ejecutado1', text: 'Ejecutado 1' },
@@ -182,7 +266,37 @@ export default {
         { value: 'Prealistamiento2', text: 'Prealistamiento 2' },
         { value: 'Prealistamiento3', text: 'Prealistamiento 3' },
       ],
+      orderForm: {
+        code: '',
+        date: '',
+        status: '',
+        client: '',
+        product: '',
+        machine: '',
+        amount: 0,
+        unitMeasure: '',
+        reason: '',
+        executed: '',
+        preEnlistment: '',
+        job: '',
+      },
     }
+  },
+  mounted() {
+    this.getMachines()
+    this.getReasons()
+  },
+  methods: {
+    async getMachines() {
+      const { data } = await axios.get('http://3.143.116.184:8082/sgpmes/machine/1')
+      this.optionsMaquina = data.map(machine => ({ value: machine.machine_id, text: machine.name }))
+      this.optionsMaquina.unshift({ value: null, text: 'Please select some machine' })
+    },
+    async getReasons() {
+      const { data } = await axios.get('http://3.143.116.184:8080/cloudmessage/notications/list')
+      this.optionsMotivo = data.map(reason => ({ value: reason.message_config_id, text: reason.name }))
+      this.optionsMotivo.unshift({ value: null, text: 'Please select some reason' })
+    },
   },
 }
 </script>
