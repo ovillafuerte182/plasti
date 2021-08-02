@@ -33,7 +33,7 @@ import {
 } from 'bootstrap-vue'
 import BCardCode from '@core/components/b-card-code'
 import vSelect from 'vue-select'
-import axios from 'axios'
+import groupService from '@/services/groupService'
 import {
   codeVueMultiBasic, codeVueMultiIcon, codeMultiPush, codeVueSelectionLimit, codeVueDir,
 } from './code'
@@ -65,14 +65,9 @@ export default {
       ],
     }
   },
-  mounted() {
-    this.getGroups()
-  },
-  methods: {
-    async getGroups() {
-      const { data } = await axios.get('http://3.143.116.184:8080/cloudmessage/group/list')
-      this.groupOptions = data.map(group => ({ title: this.$options.filters.capitalize(group.name) }))
-    },
+  async created() {
+    const data = await groupService.get()
+    this.groupOptions = data.map(option => ({ title: option.text }))
   },
 }
 </script>

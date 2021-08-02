@@ -48,7 +48,7 @@
   </div>
 </template>
 <script>
-import draggable from '@/vuedraggable'
+import draggable from 'vuedraggable'
 
 export default {
   name: 'TwoLists',

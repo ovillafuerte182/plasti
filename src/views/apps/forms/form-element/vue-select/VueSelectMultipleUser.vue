@@ -33,7 +33,7 @@ import {
 } from 'bootstrap-vue'
 import BCardCode from '@core/components/b-card-code'
 import vSelect from 'vue-select'
-import axios from 'axios'
+import userService from '@/services/userService'
 import {
   codeVueMultiBasic, codeVueMultiIcon, codeMultiPush, codeVueSelectionLimit, codeVueDir,
 } from './code'
@@ -59,14 +59,9 @@ export default {
       userOptions: [],
     }
   },
-  mounted() {
-    this.getUsers()
-  },
-  methods: {
-    async getUsers() {
-      const { data } = await axios.get('http://3.143.116.184:8080/cloudmessage/user/list/1')
-      this.userOptions = data.map(user => ({ title: this.$options.filters.capitalize(`${user.name} ${user.last_name}`) }))
-    },
+  async created() {
+    const data = await userService.get()
+    this.userOptions = data.map(option => ({ title: option.text }))
   },
 }
 </script>

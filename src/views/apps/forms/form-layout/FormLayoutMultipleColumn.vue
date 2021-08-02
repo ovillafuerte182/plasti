@@ -277,6 +277,7 @@ import {
   BRow, BCol, BFormGroup, BFormInput, BFormCheckbox, BForm, BButton, BFormSelect,
 } from 'bootstrap-vue'
 import Ripple from 'vue-ripple-directive'
+import causeFailedJobService from '@/services/causeFailedJobService'
 import FormSelectBasic from '../form-element/form-select/FormSelectBasic.vue'
 import FormSelectBasicGrupo from '../form-element/form-select/FormSelectBasicGrupo.vue'
 import FormSelectBasicMaquinas from '../form-element/form-select/FormSelectBasicMaquinas.vue'
@@ -307,11 +308,12 @@ export default {
   data() {
     return {
       codeMultipleColumn,
-      optionsCausa: [
-        { value: '1', text: 'Causa 1' },
-        { value: '2', text: 'Causa 2' },
-      ],
+      optionsCausa: [],
     }
+  },
+  async created() {
+    this.optionsCausa = await causeFailedJobService.get()
+    this.optionsCausa.unshift({ value: null, text: 'Please select a cause' })
   },
 }
 </script>

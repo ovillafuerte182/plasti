@@ -216,7 +216,10 @@ import {
   BRow, BCol, BFormGroup, BFormInput, BButton, BForm, BFormSelect,
 } from 'bootstrap-vue'
 import Ripple from 'vue-ripple-directive'
-import axios from 'axios'
+import machineService from '@/services/machineService'
+import causeService from '@/services/causeService'
+import orderStatusService from '@/services/orderStatusService'
+import measureUnitService from '@/services/measureUnitService'
 import { codeMultipleColumn } from './code'
 
 export default {
@@ -240,19 +243,9 @@ export default {
         { value: '1', text: 'Causa 1' },
         { value: '2', text: 'Causa 2' },
       ],
-      options: [
-        { value: null, text: 'Please select some state' },
-        { value: 'Low', text: 'Low' },
-        { value: 'Medium', text: 'Medium' },
-        { value: 'High', text: 'High' },
-      ],
+      options: [],
       optionsMaquina: [],
-      optionsUnidad: [
-        { value: null, text: 'Please select some unit of measure' },
-        { value: 'Measure1', text: 'Measure 1' },
-        { value: 'Measure2', text: 'Measure 2' },
-        { value: 'Measure3', text: 'Measure 3' },
-      ],
+      optionsUnidad: [],
       optionsMotivo: [],
       optionsEjecutado: [
         { value: null, text: 'Please select some unit of measure' },
@@ -282,21 +275,18 @@ export default {
       },
     }
   },
-  mounted() {
-    this.getMachines()
-    this.getReasons()
-  },
-  methods: {
-    async getMachines() {
-      const { data } = await axios.get('http://3.143.116.184:8082/sgpmes/machine/1')
-      this.optionsMaquina = data.map(machine => ({ value: machine.machine_id, text: machine.name }))
-      this.optionsMaquina.unshift({ value: null, text: 'Please select some machine' })
-    },
-    async getReasons() {
-      const { data } = await axios.get('http://3.143.116.184:8080/cloudmessage/notications/list')
-      this.optionsMotivo = data.map(reason => ({ value: reason.message_config_id, text: reason.name }))
-      this.optionsMotivo.unshift({ value: null, text: 'Please select some reason' })
-    },
+  async created() {
+    this.optionsMaquina = await machineService.get()
+    this.optionsMaquina.unshift({ value: null, text: 'Please select some machine' })
+
+    this.optionsMotivo = await causeService.get()
+    this.optionsMotivo.unshift({ value: null, text: 'Please select some reason' })
+
+    this.options = await orderStatusService.get()
+    this.options.unshift({ value: null, text: 'Please select some state' })
+
+    this.optionsUnidad = await measureUnitService.get()
+    this.optionsUnidad.unshift({ value: null, text: 'Please select some unit of measure' })
   },
 }
 </script>

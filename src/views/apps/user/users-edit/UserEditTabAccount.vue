@@ -230,6 +230,9 @@ export default {
     userData: {
       type: Object,
       required: false,
+      default() {
+        return {}
+      },
     },
   },
   setup(props) {
