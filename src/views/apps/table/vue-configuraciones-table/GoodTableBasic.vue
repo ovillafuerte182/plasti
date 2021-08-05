@@ -179,29 +179,29 @@ export default {
   },
   data() {
     return {
-      pageLength: 3,
+      pageLength: 10,
       dir: false,
       codeBasic,
       columns: [
         {
           label: 'Id',
-          field: 'id',
+          field: 'machine_id',
         },
         {
           label: 'Planta',
-          field: 'planta',
+          field: 'name_fac',
         },
         {
           label: 'Zona',
-          field: 'zona',
+          field: 'name_zo',
         },
         {
           label: 'Grupo',
-          field: 'grupo',
+          field: 'name_gr',
         },
         {
           label: 'Maquina',
-          field: 'maquina',
+          field: 'name_ma',
         },
         {
           label: 'Status',
@@ -256,7 +256,7 @@ export default {
     },
   },
   created() {
-    this.$http.get('http://3.143.116.184:8080/cloudmessage/user/list/1')
+    this.$http.get('http://3.143.116.184:8082/sgpmes/report/rplant')
       .then(res => { this.rows = res.data })
   },
 }

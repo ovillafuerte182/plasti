@@ -186,7 +186,7 @@ export default {
   },
   data() {
     return {
-      pageLength: 8,
+      pageLength: 10,
       dir: false,
       codeBasic,
       columns: [
@@ -204,15 +204,15 @@ export default {
         },
         {
           label: 'Tipo',
-          field: 'maintenance_type.maintenance_type_id',
+          field: 'maintenance_type.name',
         },
         {
           label: 'Prioridad',
-          field: 'maintenance_priority.maintenance_type_id',
+          field: 'maintenance_priority.name',
         },
         {
           label: 'Categoria',
-          field: 'maintenance_category_event.maintenance_category_event_id',
+          field: 'maintenance_category_event.name',
         },
         {
           label: 'Última actualización',
@@ -224,11 +224,11 @@ export default {
         },
         {
           label: 'Solicitante',
-          field: 'solicitante',
+          field: 'user_creation.email',
         },
         {
           label: 'Tecnico',
-          field: 'tecnico',
+          field: 'user_end.email',
         },
         {
           label: 'Fecha Cierre',

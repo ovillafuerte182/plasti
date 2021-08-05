@@ -186,7 +186,7 @@ export default {
   },
   data() {
     return {
-      pageLength: 8,
+      pageLength: 10,
       dir: false,
       codeBasic,
       columns: [
