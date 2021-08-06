@@ -9,9 +9,9 @@
         @change="log"
       >
         <div
-          class="list-group-item"
           v-for="element in list1"
           :key="element.name"
+          class="list-group-item"
         >
           {{ element.name }}
         </div>
@@ -27,18 +27,26 @@
         @change="log"
       >
         <div
-          class="list-group-item"
           v-for="element in list2"
           :key="element.name"
+          class="list-group-item"
         >
           {{ element.name }}
         </div>
       </draggable>
     </div>
 
-    <rawDisplayer class="col-3" :value="list1" title="List 1" />
+    <rawDisplayer
+      class="col-3"
+      :value="list1"
+      title="List 1"
+    />
 
-    <rawDisplayer class="col-3" :value="list2" title="List 2" />
+    <rawDisplayer
+      class="col-3"
+      :value="list2"
+      title="List 2"
+    />
   </div>
 </template>
 
@@ -46,7 +54,7 @@
 import draggable from 'vuedraggable'
 
 export default {
-  name: 'clone',
+  name: 'Clone',
   display: 'Clone',
   order: 2,
   components: {

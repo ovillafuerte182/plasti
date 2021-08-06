@@ -1,11 +1,11 @@
 <template>
   <b-card-code title="Orders">
-  <b-button
-            variant="primary"
-            :to="{ name: 'create-order'}"
-          >
-            Create Order
-  </b-button>
+    <b-button
+      variant="primary"
+      :to="{ name: 'create-order'}"
+    >
+      Create Order
+    </b-button>
     <!-- search input -->
     <div class="custom-search d-flex justify-content-end">
       <b-form-group>

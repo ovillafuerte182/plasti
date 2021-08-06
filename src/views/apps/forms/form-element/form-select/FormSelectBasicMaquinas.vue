@@ -23,6 +23,7 @@
 <script>
 import BCardCode from '@core/components/b-card-code'
 import { BFormSelect, BCardText } from 'bootstrap-vue'
+import machineService from '@/services/machineService'
 import { codeBasic } from './code'
 
 export default {
@@ -34,14 +35,13 @@ export default {
   data() {
     return {
       selected: null,
-      options: [
-        { value: null, text: 'Seleccione una opción' },
-        { value: 'Miraflex', text: 'Miraflex' },
-        { value: 'Palmiraflex', text: 'Palmiraflex' },
-        { value: 'Bugaflex', text: 'Bugaflex' },
-      ],
+      options: [],
       codeBasic,
     }
+  },
+  async created() {
+    this.options = await machineService.get()
+    this.options.unshift({ value: null, text: 'Please select some machine' })
   },
 }
 </script>

@@ -88,7 +88,7 @@
           :to="{ name: 'apps-invoice-preview', params: { id: data.res.code }}"
           class="font-weight-bold"
         >
-            12
+          12
         </b-link>
       </template>
 

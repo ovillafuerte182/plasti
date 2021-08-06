@@ -1,11 +1,11 @@
 <template>
   <b-card-code title="Maintenance">
-  <b-button
-            variant="primary"
-            :to="{ name: 'create-case'}"
-          >
-            Crear Caso
-  </b-button>
+    <b-button
+      variant="primary"
+      :to="{ name: 'create-case'}"
+    >
+      Crear Caso
+    </b-button>
     <!-- search input -->
     <div class="custom-search d-flex justify-content-end">
       <b-form-group>

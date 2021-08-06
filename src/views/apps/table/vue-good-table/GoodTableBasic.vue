@@ -1,11 +1,11 @@
 <template>
   <b-card-code title="Notifications">
-  <b-button
-            variant="primary"
-            :to="{ name: 'notify-prog'}"
-          >
-            Programar
-  </b-button>
+    <b-button
+      variant="primary"
+      :to="{ name: 'notify-prog'}"
+    >
+      Programar
+    </b-button>
     <!-- search input -->
     <div class="custom-search d-flex justify-content-end">
       <b-form-group>

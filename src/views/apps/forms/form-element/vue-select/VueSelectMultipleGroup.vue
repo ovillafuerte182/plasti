@@ -15,7 +15,7 @@
             :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
             multiple
             label="title"
-            :options="option"
+            :options="groupOptions"
           />
 
           <template #code>
@@ -33,6 +33,7 @@ import {
 } from 'bootstrap-vue'
 import BCardCode from '@core/components/b-card-code'
 import vSelect from 'vue-select'
+import groupService from '@/services/groupService'
 import {
   codeVueMultiBasic, codeVueMultiIcon, codeMultiPush, codeVueSelectionLimit, codeVueDir,
 } from './code'
@@ -54,58 +55,19 @@ export default {
       codeVueSelectionLimit,
       codeVueDir,
       dir: 'ltr',
-      selected: [
-        { title: 'Grupo1' },
-        { title: 'Grupo5' },
-      ],
-      selected1: [
-        {
-          title: 'Command',
-          icon: 'CommandIcon',
-        },
-      ],
-      selected2: [],
-      selected3: [{
-        title: 'Database',
-        icon: 'DatabaseIcon',
-      }],
-      options: [],
-      optionsGrupo: [],
-      option: [
+      selected: [],
+      groupOptions: [
         { title: 'Grupo1' },
         { title: 'Grupo2' },
         { title: 'Grupo3' },
         { title: 'Grupo4' },
         { title: 'Grupo5' },
-        { title: 'Grupo6' },
-        { title: 'Grupo7' },
-      ],
-      optiongrupo: [
-        { title: 'Grupo1' },
-        { title: 'Grupo2' },
-        { title: 'Grupo3' },
-        { title: 'Grupo4' },
-        { title: 'Grupo5' },
-      ],
-      books: [
-        {
-          title: 'Database',
-          icon: 'DatabaseIcon',
-        },
-        {
-          title: 'Codepen',
-          icon: 'CodepenIcon',
-        },
-        {
-          title: 'Aperture ',
-          icon: 'ApertureIcon',
-        },
-        {
-          title: 'Command',
-          icon: 'CommandIcon',
-        },
       ],
     }
+  },
+  async created() {
+    const data = await groupService.get()
+    this.groupOptions = data.map(option => ({ title: option.text }))
   },
 }
 </script>
