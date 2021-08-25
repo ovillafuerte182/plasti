@@ -23,6 +23,7 @@
 <script>
 import BCardCode from '@core/components/b-card-code'
 import { BFormSelect, BCardText } from 'bootstrap-vue'
+import groupService from '@/services/groupService'
 import { codeBasic } from './code'
 
 export default {
@@ -35,14 +36,13 @@ export default {
     return {
       selected: null,
       options: [
-        { value: null, text: 'Seleccione una opción' },
-        { value: 'Grupo Impresoras MREF', text: 'Grupo Impresoras MREF' },
-        { value: 'Grupo Administrativo', text: 'Grupo Administrativo' },
-        { value: { C: 'Grupo Ingenierias' }, text: 'Grupo Ingenierias' },
-        { value: 'Grupo Apoyo', text: 'Grupo Apoyo', disabled: true },
       ],
       codeBasic,
     }
+  },
+  async created() {
+    this.options = await groupService.get()
+    this.options.unshift({ value: null, text: 'Please select a group' })
   },
 }
 </script>

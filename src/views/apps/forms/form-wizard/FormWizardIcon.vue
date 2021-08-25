@@ -467,7 +467,7 @@
                 :state="Boolean(file1)"
                 placeholder="Escoja un archivo o arrastrelo aquí..."
                 drop-placeholder="arrastrar archivo aquí..."
-              ></b-form-file>
+              />
             </b-form-group>
           </b-col>
         </b-row>

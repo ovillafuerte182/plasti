@@ -44,7 +44,10 @@
           />
         </template>
 
-        <b-dropdown-item href="edit-page" link-class="d-flex align-items-center">
+        <b-dropdown-item
+          href="edit-page"
+          link-class="d-flex align-items-center"
+        >
           <feather-icon
             size="16"
             icon="UserIcon"

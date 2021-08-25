@@ -1,11 +1,11 @@
 <template>
   <b-card-code title="Notifications">
-  <b-button
-            variant="primary"
-            :to="{ name: 'notify-prog'}"
-          >
-            Programar
-  </b-button>
+    <b-button
+      variant="primary"
+      :to="{ name: 'notify-prog'}"
+    >
+      Programar
+    </b-button>
     <!-- search input -->
     <div class="custom-search d-flex justify-content-end">
       <b-form-group>
@@ -191,24 +191,20 @@ export default {
       codeBasic,
       columns: [
         {
-          label: 'Name',
-          field: 'name',
+          label: 'Code',
+          field: 'message_type.code',
         },
         {
-          label: 'Email',
-          field: 'email',
+          label: 'Subject',
+          field: 'subject',
         },
         {
-          label: 'Date',
-          field: 'startDate',
+          label: 'Description',
+          field: 'description',
         },
         {
-          label: 'Salary',
-          field: 'salary',
-        },
-        {
-          label: 'Status',
-          field: 'status',
+          label: 'Creation Date',
+          field: 'creation_date',
         },
         {
           label: 'Action',
@@ -259,7 +255,7 @@ export default {
     },
   },
   created() {
-    this.$http.get('http://3.143.116.184:8080/cloudmessage/user/list/1')
+    this.$http.get('http://3.143.116.184:8080/cloudmessage/message/list')
       .then(res => { this.rows = res.data })
   },
 }
