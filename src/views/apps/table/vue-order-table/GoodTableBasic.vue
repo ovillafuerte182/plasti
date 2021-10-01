@@ -82,19 +82,12 @@
                   class="text-body align-middle mr-25"
                 />
               </template>
-              <b-dropdown-item>
+              <b-dropdown-item :href="'/update-order/' + props.row['job_id']">
                 <feather-icon
                   icon="Edit2Icon"
                   class="mr-50"
                 />
                 <span>Edit</span>
-              </b-dropdown-item>
-              <b-dropdown-item>
-                <feather-icon
-                  icon="TrashIcon"
-                  class="mr-50"
-                />
-                <span>Delete</span>
               </b-dropdown-item>
             </b-dropdown>
           </span>

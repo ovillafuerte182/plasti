@@ -22,7 +22,8 @@
       :rtl="direction"
       :search-options="{
         enabled: true,
-        externalQuery: searchTerm }"
+        externalQuery: searchTerm,
+      }"
       :select-options="{
         enabled: true,
         selectOnCheckboxOnly: true, // only select when checkbox is clicked instead of the row
@@ -34,14 +35,13 @@
       }"
       :pagination-options="{
         enabled: true,
-        perPage:pageLength
+        perPage: pageLength,
       }"
     >
       <template
         slot="table-row"
         slot-scope="props"
       >
-
         <!-- Column: Name -->
         <span
           v-if="props.column.field === 'fullName'"
@@ -107,14 +107,14 @@
       >
         <div class="d-flex justify-content-between flex-wrap">
           <div class="d-flex align-items-center mb-0 mt-1">
-            <span class="text-nowrap ">
-              Showing 1 to
-            </span>
+            <span class="text-nowrap"> Showing 1 to </span>
             <b-form-select
               v-model="pageLength"
-              :options="['3','5','10']"
+              :options="['3', '5', '10']"
               class="mx-1"
-              @input="(value)=>props.perPageChanged({currentPerPage:value})"
+              @input="
+                (value) => props.perPageChanged({ currentPerPage: value })
+              "
             />
             <span class="text-nowrap"> of {{ props.total }} entries </span>
           </div>
@@ -129,7 +129,7 @@
               prev-class="prev-item"
               next-class="next-item"
               class="mt-1 mb-0"
-              @input="(value)=>props.pageChanged({currentPage:value})"
+              @input="(value) => props.pageChanged({ currentPage: value })"
             >
               <template #prev-text>
                 <feather-icon
@@ -158,7 +158,14 @@
 <script>
 import BCardCode from '@core/components/b-card-code/BCardCode.vue'
 import {
-  BAvatar, BBadge, BPagination, BFormGroup, BFormInput, BFormSelect, BDropdown, BDropdownItem,
+  BAvatar,
+  BBadge,
+  BPagination,
+  BFormGroup,
+  BFormInput,
+  BFormSelect,
+  BDropdown,
+  BDropdownItem,
 } from 'bootstrap-vue'
 import { VueGoodTable } from 'vue-good-table'
 import store from '@/store/index'
@@ -207,38 +214,36 @@ export default {
           label: 'Status',
           field: 'status',
         },
-        {
-          label: 'Action',
-          field: 'action',
-        },
       ],
       rows: [],
       searchTerm: '',
-      status: [{
-        1: 'Current',
-        2: 'Professional',
-        3: 'Rejected',
-        4: 'Resigned',
-        5: 'Applied',
-      },
-      {
-        1: 'light-primary',
-        2: 'light-success',
-        3: 'light-danger',
-        4: 'light-warning',
-        5: 'light-info',
-      }],
+      status: [
+        {
+          1: 'Current',
+          2: 'Professional',
+          3: 'Rejected',
+          4: 'Resigned',
+          5: 'Applied',
+        },
+        {
+          1: 'light-primary',
+          2: 'light-success',
+          3: 'light-danger',
+          4: 'light-warning',
+          5: 'light-info',
+        },
+      ],
     }
   },
   computed: {
     statusVariant() {
       const statusColor = {
         /* eslint-disable key-spacing */
-        Current      : 'light-primary',
-        Professional : 'light-success',
-        Rejected     : 'light-danger',
-        Resigned     : 'light-warning',
-        Applied      : 'light-info',
+        Current: 'light-primary',
+        Professional: 'light-success',
+        Rejected: 'light-danger',
+        Resigned: 'light-warning',
+        Applied: 'light-info',
         /* eslint-enable key-spacing */
       }
 
@@ -256,8 +261,11 @@ export default {
     },
   },
   created() {
-    this.$http.get('http://3.143.116.184:8082/sgpmes/report/rplant')
-      .then(res => { this.rows = res.data })
+    this.$http
+      .get('http://3.143.116.184:8082/sgpmes/report/rplant')
+      .then(res => {
+        this.rows = res.data
+      })
   },
 }
 </script>
