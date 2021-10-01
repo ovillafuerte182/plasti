@@ -144,7 +144,21 @@ const router = new VueRouter({
         pageTitle: 'Orders Page',
         breadcrumb: [
           {
-            text: 'Orders Page',
+            text: 'Create Order',
+            active: true,
+          },
+        ],
+      },
+    },
+    {
+      path: '/update-order/:order_id',
+      name: 'update-order',
+      component: () => import('@/views/apps/forms/form-layout-orders/FormLayoutMultipleColumn.vue'),
+      meta: {
+        pageTitle: 'Orders Page',
+        breadcrumb: [
+          {
+            text: 'Update Order',
             active: true,
           },
         ],

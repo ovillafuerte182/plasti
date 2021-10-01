@@ -89,13 +89,6 @@
                 />
                 <span>Edit</span>
               </b-dropdown-item>
-              <b-dropdown-item>
-                <feather-icon
-                  icon="TrashIcon"
-                  class="mr-50"
-                />
-                <span>Delete</span>
-              </b-dropdown-item>
             </b-dropdown>
           </span>
         </span>
