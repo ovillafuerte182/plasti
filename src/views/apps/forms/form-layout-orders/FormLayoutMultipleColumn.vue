@@ -1,7 +1,7 @@
 <template>
 
   <b-card-code
-    title="Crear Orden"
+    :title="title"
   >
     <validation-observer
       ref="observer"
@@ -189,7 +189,7 @@
                 label-for="motivo"
               >
                 <b-form-select
-                  v-model.number="form.reason"
+                  v-model="form.reason"
                   :state="getValidationState(validationContext)"
                   :options="optionsMotivo"
                 />
@@ -306,6 +306,7 @@ import BCardCode from '@core/components/b-card-code'
 import {
   BRow, BCol, BFormGroup, BFormRadioGroup, BFormInput, BButton, BForm, BFormSelect,
 } from 'bootstrap-vue'
+import ToastificationContent from '@core/components/toastification/ToastificationContent.vue'
 import Ripple from 'vue-ripple-directive'
 import machineService from '@/services/machineService'
 import causeService from '@/services/causeService'
@@ -325,6 +326,8 @@ export default {
     BFormInput,
     BFormSelect,
     BForm,
+    // eslint-disable-next-line vue/no-unused-components
+    ToastificationContent,
   },
   directives: {
     Ripple,
@@ -384,6 +387,7 @@ export default {
         recipe: '',
         reason: null,
       },
+      title: '',
     }
   },
   watch: {
@@ -400,6 +404,27 @@ export default {
       deep: true,
     },
   },
+  async mounted() {
+    this.form.job_id = this.$route.params.order_id || null
+    this.title = this.form.job_id ? 'Editar Orden' : 'Crear Orden'
+
+    // Edit Job
+    if (this.form.job_id) {
+      const orderData = await orderService.get(this.form.job_id)
+
+      this.form.code = orderData.code
+      this.form.state = orderData.state
+      this.form.customer_name = orderData.customer_name
+      this.form.item_name = orderData.item_name
+      this.form.machine.machine_id = orderData.machine.machine_id
+      this.form.quantity = orderData.quantity
+      this.form.unit = orderData.unit
+      this.form.reason = orderData.reason
+      this.form.executed = orderData.executed
+      this.form.setup = orderData.setup
+      this.form.order = orderData.order
+    }
+  },
   async created() {
     this.optionsMaquina = await machineService.get()
     this.optionsMaquina.unshift({ value: null, text: 'Seleccione una maquina' })
@@ -415,16 +440,29 @@ export default {
   },
   methods: {
     async onSubmit() {
-      const result = await orderService.create(this.form)
+      let result = null; let
+        confirmationMessage = ''
+
+      if (this.form.job_id) {
+        result = await orderService.update(this.form)
+        confirmationMessage = 'Orden actualizada con éxito!'
+      } else {
+        result = await orderService.create(this.form)
+        confirmationMessage = 'Orden registrada con éxito!'
+      }
 
       if (result.status === 200) {
-        this.$swal({
-          icon: 'success',
-          title: 'La orden fue registrada con éxito.',
-          // showConfirmButton: false,
-          // timer: 2000,
-          willClose: () => {
-            this.$router.push('orders-page')
+        this.$toast({
+          component: ToastificationContent,
+          props: {
+            title: confirmationMessage,
+            icon: 'EditIcon',
+            variant: 'success',
+          },
+        }, {
+          timeout: 2000,
+          onClose: () => {
+            this.$router.push('/orders-page')
           },
         })
       }

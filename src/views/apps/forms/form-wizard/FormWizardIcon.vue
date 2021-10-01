@@ -106,10 +106,10 @@
             >
               <v-select
                 id="i-planta"
-                v-model="selectedContry"
+                v-model="zoneForm.factoryId"
                 :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
-                :options="countryName"
-                :selectable="option => ! option.value.includes('select_value')"
+                :options="optionsPlanta"
+                :selectable="option => option.value !== '0'"
                 label="text"
               />
             </b-form-group>
@@ -176,10 +176,10 @@
             >
               <v-select
                 id="i-planta-gr"
-                v-model="selectedContryG"
+                v-model="groupForm.factoryId"
                 :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
-                :options="countryName"
-                :selectable="option => ! option.value.includes('select_value')"
+                :options="optionsPlanta"
+                :selectable="option => option.value !== '0'"
                 label="text"
               />
             </b-form-group>
@@ -256,10 +256,10 @@
             >
               <v-select
                 id="i-planta-ma"
-                v-model="selectedContryM"
+                v-model="machineForm.factoryId"
                 :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
-                :options="countryName"
-                :selectable="option => ! option.value.includes('select_value')"
+                :options="optionsPlanta"
+                :selectable="option => option.value !== '0'"
                 label="text"
               />
             </b-form-group>
@@ -352,10 +352,10 @@
             >
               <v-select
                 id="i-planta-us"
-                v-model="selectedContryU"
+                v-model="userForm.factoryId"
                 :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
-                :options="countryName"
-                :selectable="option => ! option.value.includes('select_value')"
+                :options="optionsPlanta"
+                :selectable="option => option.value !== '0'"
                 label="text"
               />
             </b-form-group>
@@ -457,19 +457,7 @@
               />
             </b-form-group>
           </b-col>
-          <b-col md="6">
-            <b-form-group
-              label-for="Image"
-              label="Foto"
-            >
-              <b-form-file
-                v-model="file1"
-                :state="Boolean(file1)"
-                placeholder="Escoja un archivo o arrastrelo aquí..."
-                drop-placeholder="arrastrar archivo aquí..."
-              />
-            </b-form-group>
-          </b-col>
+          <b-col md="6" />
         </b-row>
       </tab-content>
     </form-wizard>
@@ -489,6 +477,7 @@ import {
   BFormInput,
   BFormFile,
 } from 'bootstrap-vue'
+import factoryService from '@/services/factoryService'
 import { codeIconInfo } from './code'
 
 export default {
@@ -499,6 +488,7 @@ export default {
     BCol,
     BFormGroup,
     BFormInput,
+    // eslint-disable-next-line vue/no-unused-components
     BFormFile,
     vSelect,
     // eslint-disable-next-line vue/no-unused-components
@@ -506,7 +496,18 @@ export default {
   },
   data() {
     return {
-      selectedContry: 'select_value',
+      zoneForm: {
+        factoryId: 'Seleccione una Planta',
+      },
+      groupForm: {
+        factoryId: 'Seleccione una Planta',
+      },
+      machineForm: {
+        factoryId: 'Seleccione una Planta',
+      },
+      userForm: {
+        factoryId: 'Seleccione una Planta',
+      },
       selectedContryG: 'select_value',
       selectedContryM: 'select_value',
       selectedContry2: 'select_value',
@@ -515,16 +516,7 @@ export default {
       selectedLanguage: 'nothing_selected',
       file1: null,
       codeIconInfo,
-      countryName: [
-        { value: 'select_value', text: 'Select Value' },
-        { value: 'Planta Cali', text: 'Planta Cali' },
-        { value: 'Planta Buga', text: 'Planta Buga' },
-        { value: 'Planta Palmira', text: 'Planta Palmira' },
-        { value: 'Planta Candelaria', text: 'Planta Candelaria' },
-        { value: 'Planta Bugalagrande', text: 'Planta Bugalagrande' },
-        { value: 'Planta Cerrito', text: 'Planta Cerrito' },
-        { value: 'Planta Tulua', text: 'Planta Tulua' },
-      ],
+      optionsPlanta: [],
       countryName2: [
         { value: 'select_value', text: 'Select Value' },
         { value: 'Zona Cali', text: 'Zona Cali' },
@@ -556,6 +548,10 @@ export default {
         { value: 'Rebobine6', text: 'Rebobine6' },
       ],
     }
+  },
+  async mounted() {
+    this.optionsPlanta = await factoryService.get()
+    this.optionsPlanta.unshift({ value: '0', text: 'Seleccione una Planta' })
   },
   methods: {
     formSubmitted() {

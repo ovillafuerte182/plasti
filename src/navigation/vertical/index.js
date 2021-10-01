@@ -25,11 +25,6 @@ export default [
     icon: 'FileIcon',
   },
   {
-    title: 'Integration Page',
-    route: 'integration-page',
-    icon: 'FileIcon',
-  },
-  {
     title: 'Parametros',
     route: 'parametros-page',
     icon: 'FileIcon',
